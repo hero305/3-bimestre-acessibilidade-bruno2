@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Tropicália</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #2A9D8F;
+            --accent-color: #E9C46A;
+            --dark-color: #264653;
+            --light-color: #F4F1DE;
+            --font-size-base: 1rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: #333;
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+            transition: all 0.3s ease;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-img {
+            max-height: 70px;
+            transition: transform 0.3s;
+        }
+
+        .nav-img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.5rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .menu-acessibilidade {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-acessibilidade {
+            background-color: var(--dark-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-acessibilidade:hover {
+            transform: rotate(15deg) scale(1.1);
+            background-color: var(--secondary-color);
+        }
+
+        .opcoes-acessibilidade {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+            min-width: 150px;
+        }
+
+        .opcoes-acessibilidade.mostrar {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .btn-opcao {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 8px 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-opcao:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .inicio-fundo {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/lossy-page1-640px-Os_Mutantes.tif\ \(1\).png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inicio-fundo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--primary-color) 0%, transparent 70%);
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        .esquerda-conteudo {
+            position: relative;
+            z-index: 2;
+        }
+
+        .botao-inicio {
+            background-color: var(--accent-color);
+            border: none;
+            color: var(--dark-color);
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .botao-inicio:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .secao-tropicalia {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 40px 0;
+        }
+
+        .secao-tropicalia h2 {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .secao-tropicalia h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .fundo-galeria {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        #galeria h2 {
+            color: var(--dark-color);
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        #galeria h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .img-galeria {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .img-galeria:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .img-galeria img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .formulario {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #contato h2 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control {
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.3);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        footer i {
+            font-size: 1.8rem;
+            margin: 0 15px;
+            color: var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        footer i:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-audio {
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .btn-audio:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .texto-audio {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .texto-audio:hover {
+            background-color: rgba(233, 196, 106, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .inicio-fundo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .esquerda-conteudo {
+                margin-bottom: 30px;
+            }
+            
+            .secao-tropicalia .container {
+                flex-direction: column;
+            }
+            
+            .secao-tropicalia .col-4, .secao-tropicalia .col-5 {
+                width: 100% !important;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .menu-acessibilidade {
+                margin-top: 20px;
+            }
+            
+            .opcoes-acessibilidade {
+                top: 50px;
+                right: auto;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="p-3 p-md-4">
+        <nav class="container d-flex justify-content-between align-items-center flex-wrap">
+            <img src="img/logo.png" class="nav-img" alt="Logo Tropicália" loading="lazy">
+            
+            <ul class="nav mt-3 mt-md-0">
+                <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tropicalia">Tropicália</a></li>
+                <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+            </ul>
+
+            <div id="acessibilidade" class="menu-acessibilidade">
+                <button id="botao-acessibilidade" class="btn-acessibilidade">
+                    <i class="bi bi-universal-access"></i>
+                </button>
+                <div id="opcoes-acessibilidade" class="opcoes-acessibilidade">
+                    <button id="aumentar-fonte" class="btn-opcao">
+                        <i class="bi bi-zoom-in"></i> A +
+                    </button>
+                    <button id="diminuir-fonte" class="btn-opcao">
+                        <i class="bi bi-zoom-out"></i> A -
+                    </button>
+                    <button id="ativar-audio" class="btn-opcao">
+                        <i class="bi bi-soundwave"></i> Ler texto
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <section id="inicio" class="my-5">
+            <div class="inicio-fundo d-flex justify-content-between align-items-center flex-wrap">
+                <div class="esquerda-conteudo">
+                    <h1 class="display-4 text-white fst-italic fw-bold">Boas-vindas a</h1>
+                    <img src="img/logo-2.png" class="mb-3 img-fluid" alt="Tropicália" loading="lazy">
+                    <a href="#tropicalia" class="btn botao-inicio fw-semibold">Quero conhecer!</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="tropicalia" class="my-5 pt-5 secao-tropicalia">
+            <div class="container d-flex align-items-center flex-wrap">
+                <div class="col-12 col-md-4 d-flex justify-content-center mb-4 mb-md-0">
+                    <img src="img/image (1).png" class="rounded-pill img-fluid shadow" alt="Imagem representativa da Tropicália" loading="lazy">
+                </div>
+                <div class="col-12 col-md-8 ps-md-5">
+                    <h2>O que foi a <span class="texto-audio">Tropicália?<button class="btn-audio" data-text="Tropicália"><i class="bi bi-volume-up"></i></button></span></h2>
+                    <p class="p-2">A <span class="texto-audio">Tropicália<button class="btn-audio" data-text="Tropicália"><i class="bi bi-volume-up"></i></button></span>, também conhecida como <span class="texto-audio">Tropicalismo<button class="btn-audio" data-text="Tropicalismo"><i class="bi bi-volume-up"></i></button></span>, foi um movimento cultural brasileiro que surgiu na década de 1960, tendo seu auge entre 1967 e 1968. Esse movimento abrangeu várias expressões artísticas, como a música, o cinema, o teatro e as artes plásticas, e teve como principal característica a mistura de elementos da cultura brasileira tradicional com influências estrangeiras, especialmente do rock e da música pop. Fonte: Site Toda a matéria</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="my-5">
+            <h2 class="text-center pt-5 mb-4">Galeria</h2>
+            <div class="container p-3 mt-3 fundo-galeria">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-5 img-galeria">
+                        <img src="img/lossy-page1-640px-Jorge_Ben_e_o_Trio_Mocotó_no_Teatro_da_Lagoa,_1971.tif.jpg" 
+                             class="img-fluid" alt="Jorge Ben e o Trio Mocotó no Teatro da Lagoa, 1971" loading="lazy">
+                    </div>
+                    <div class="col-12 col-md-5 img-galeria">
+                        <img src="img/lossy-page1-640px-Os_Mutantes_2.tif.jpg" 
+                             class="img-fluid" alt="Os Mutantes em show" loading="lazy">
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-12 col-md-5 img-galeria">
+                        <img src="img/lossy-page1-640px-Gilberto_Gil_nos_anos_1960.tif.jpg" 
+                             class="img-fluid" alt="Gilberto Gil nos anos 1960" loading="lazy">
+                    </div>
+                    <div class="col-12 col-md-5 img-galeria">
+                        <img src="img/lossy-page1-640px-Caetano_Veloso_no_III_Festival_da_Música_Popular.tif.jpg" 
+                             class="img-fluid" alt="Caetano Veloso no III Festival da Música Popular" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="my-5">
+            <div class="container d-flex justify-content-center">
+                <div class="col-12 col-lg-8 formulario">
+                    <h2 class="mb-4">Entre em contato</h2>
+                    <form>
+                        <div class="form-group mb-3">
+                            <label for="nome" class="form-label text-white">Nome</label>
+                            <input type="text" id="nome" name="nome" class="form-control rounded-3 mt-1"
+                                placeholder="Digite seu nome completo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label text-white">Email</label>
+                            <input type="email" id="email" name="email" class="form-control rounded-3 mt-1"
+                                placeholder="Digite seu email">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="mensagem" class="form-label text-white">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" class="form-control rounded-4 mt-2" rows="4"
+                                placeholder="Escreva sua mensagem"></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-dark btn-lg rounded-pill">Enviar mensagem</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="text-center p-4">
+        <p>Acesse nossas redes:</p>
+        <div class="my-2">
+            <i class="bi bi-whatsapp"></i>
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-tiktok"></i>
+        </div>
+        <p class="mt-3 mb-0">Desenvolvido por Start by Alura. Projeto fictício sem fins comerciais.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Controle do menu de acessibilidade
+            const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+            const opcoesAcessibilidade = document.getElementById('opcoes-acessibilidade');
+            
+            botaoAcessibilidade.addEventListener('click', function() {
+                opcoesAcessibilidade.classList.toggle('mostrar');
+            });
+            
+            // Fechar menu ao clicar fora dele
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('#acessibilidade')) {
+                    opcoesAcessibilidade.classList.remove('mostrar');
+                }
+            });
+            
+            // Controle de tamanho da fonte
+            const aumentarFonte = document.getElementById('aumentar-fonte');
+            const diminuirFonte = document.getElementById('diminuir-fonte');
+            const html = document.documentElement;
+            let fontSize = parseFloat(getComputedStyle(html).fontSize);
+            
+            aumentarFonte.addEventListener('click', function() {
+                if (fontSize < 24) {
+                    fontSize += 2;
+                    html.style.fontSize = fontSize + 'px';
+                }
+            });
+            
+            diminuirFonte.addEventListener('click', function() {
+                if (fontSize > 14) {
+                    fontSize -= 2;
+                    html.style.fontSize = fontSize + 'px';
+                }
+            });
+            
+            // Leitor de áudio
+            const ativarAudio = document.getElementById('ativar-audio');
+            const botoesAudio = document.querySelectorAll('.btn-audio');
+            let sintetizador = window.speechSynthesis;
+            
+            // Função para falar texto
+            function falarTexto(texto) {
+                // Cancelar qualquer fala em andamento
+                sintetizador.cancel();
+                
+                // Configurar e iniciar a fala
+                const utterance = new SpeechSynthesisUtterance(texto);
+                utterance.lang = 'pt-BR';
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+                sintetizador.speak(utterance);
+            }
+            
+            // Ativar leitura de texto ao clicar no botão principal
+            ativarAudio.addEventListener('click', function() {
+                const textoPrincipal = document.querySelector('#tropicalia p').textContent;
+                falarTexto(textoPrincipal);
+            });
+            
+            // Ativar leitura de palavras específicas
+            botoesAudio.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    const texto = this.getAttribute('data-text');
+                    falarTexto(texto);
+                });
+            });
+            
+            // Destacar texto ao passar o mouse sobre elementos com áudio
+            const textosAudio = document.querySelectorAll('.texto-audio');
+            textosAudio.forEach(texto => {
+                texto.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(233, 196, 106, 0.3)';
+                });
+                
+                texto.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
